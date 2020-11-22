@@ -53,6 +53,9 @@ class Repository(object):
         self._validator_class.validate(item)
         self._data[index] = item
 
+    def get_all(self):
+        return self._data
+
     def __str__(self):
         result = "Repository:\n"
         for item in self._data:

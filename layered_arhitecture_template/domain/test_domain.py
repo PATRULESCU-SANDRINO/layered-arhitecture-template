@@ -2,6 +2,8 @@ import unittest
 
 from layered_arhitecture_template.domain.entity1 import Entity1
 from layered_arhitecture_template.domain.entity2 import Entity2
+from layered_arhitecture_template.domain.validators import Entity1Validator, Entity1ValidatorException, \
+    Entity2Validator, Entity2ValidatorException
 
 
 class TestEntity1(unittest.TestCase):
@@ -19,6 +21,26 @@ class TestEntity1(unittest.TestCase):
     def test_str(self):
         item = Entity1(1, "abc", 20)
         self.assertEqual("attribute1: 1, attribute2: abc, attribute3: 20", item.__str__())
+
+
+class TestEntity1Validator(unittest.TestCase):
+    def test_entity1_validator(self):
+        val = Entity1Validator()
+        # entity1 invalid if attribute1 is not int
+        entity1 = Entity1("abc", "lll", 17)
+        try:
+            val.validate(entity1)
+            assert False
+        except Entity1ValidatorException:
+            pass
+
+        # entity1 invalid if attribute1 is lower than 0
+        entity1 = Entity1(-1, "lll", 17)
+        try:
+            val.validate(entity1)
+            assert False
+        except Entity1ValidatorException:
+            pass
 
 
 class TestEntity2(unittest.TestCase):
@@ -45,3 +67,24 @@ class TestEntity2(unittest.TestCase):
     def test_str(self):
         item = Entity2(1, "abc", 20)
         self.assertEqual("attribute1: 1, attribute2: abc, attribute3: 20", item.__str__())
+
+
+class TestEntity2Validator(unittest.TestCase):
+    def test_entity2_validator(self):
+        val = Entity2Validator()
+        # entity2 invalid if attribute1 is not int
+        entity2 = Entity2("", "abc", 12)
+        try:
+            val.validate(entity2)
+            assert False
+        except Entity2ValidatorException:
+            pass
+
+        # entity2 invalid if attribute1 lower than 1
+        entity2 = Entity2(0, "xyz", all)
+        try:
+            val.validate(entity2)
+            assert False
+        except Entity2ValidatorException:
+            pass
+
