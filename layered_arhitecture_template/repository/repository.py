@@ -2,8 +2,7 @@ from layered_arhitecture_template.domain.exceptions import MainException, StoreE
 
 
 class RepositoryException(StoreException):
-    def __init__(self, msg):
-        super().__init__(self, msg)
+    pass
 
 
 class Repository(object):

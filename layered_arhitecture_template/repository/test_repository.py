@@ -23,7 +23,7 @@ class TestRepository(unittest.TestCase):
         self.assertEqual(len(self._repo._data), 3)
         self.assertRaises(RepositoryException, self._repo.store, Entity1(2, "hij", 13))
 
-        #self.assertRaises(Entity1ValidatorException, self._repo.store, Entity1(-1, "lll", 17))
+        self.assertRaises(Entity1ValidatorException, self._repo.store, Entity1(-1, "lll", 17))
 
     def test_repository_delete(self):
         self._repo.delete(2)
@@ -36,7 +36,7 @@ class TestRepository(unittest.TestCase):
         self.assertEqual(item.attribute2, "efg")
         self.assertEqual(item.attribute3, 12)
 
-        self.assertRaises(RepositoryException, self._repo.__getitem__, 0)
+        self.assertRaises(RepositoryException, self._repo.__getitem__, 0)  # new
 
     def test_repository_update(self):
         self._repo.update(2, Entity1(6, "zzz", 2))

@@ -2,13 +2,11 @@ from layered_arhitecture_template.domain.exceptions import StoreException
 
 
 class Entity1ValidatorException(StoreException):
-    def __init__(self, msg):
-        super().__init__(self, msg)
+    pass
 
 
 class Entity2ValidatorException(StoreException):
-    def __init__(self, msg):
-        super().__init__(self, msg)
+    pass
 
 
 class Entity1Validator(object):
