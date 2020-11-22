@@ -1,4 +1,4 @@
-from layered_arhitecture_template.domain.exceptions import MainException, StoreException
+from layered_arhitecture_template.domain.exceptions import StoreException
 
 
 class RepositoryException(StoreException):
@@ -52,3 +52,9 @@ class Repository(object):
             raise RepositoryException("Item with attribute1=" + str(attribute1) + "not in the repo.")
         self._validator_class.validate(item)
         self._data[index] = item
+
+    def __str__(self):
+        result = "Repository:\n"
+        for item in self._data:
+            result = result + item.__str__() + '\n'
+        return result

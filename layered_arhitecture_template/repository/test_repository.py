@@ -36,7 +36,7 @@ class TestRepository(unittest.TestCase):
         self.assertEqual(item.attribute2, "efg")
         self.assertEqual(item.attribute3, 12)
 
-        self.assertRaises(RepositoryException, self._repo.__getitem__, 0)  # new
+        self.assertRaises(RepositoryException, self._repo.__getitem__, 0)
 
     def test_repository_update(self):
         self._repo.update(2, Entity1(6, "zzz", 2))
@@ -46,7 +46,15 @@ class TestRepository(unittest.TestCase):
         self.assertEqual(item.attribute2, "zzz")
         self.assertEqual(item.attribute3, 2)
 
+        self.assertRaises(Entity1ValidatorException, self._repo.update, *[6, Entity1("abc", "lll", 17)])
         self.assertRaises(RepositoryException, self._repo.update, *[7, Entity1(19, "idk", 0)])
+
+    def test_str(self):
+        repo_string = "Repository:\n"
+        repo_string = repo_string + "attribute1: 1, attribute2: abc, attribute3: 11\n"
+        repo_string = repo_string + "attribute1: 2, attribute2: efg, attribute3: 12\n"
+        repo_string = repo_string + "attribute1: 3, attribute2: hij, attribute3: 13\n"
+        self.assertEqual(self._repo.__str__(), repo_string)
 
     def tearDown(self):
         print("TORN DOWN")

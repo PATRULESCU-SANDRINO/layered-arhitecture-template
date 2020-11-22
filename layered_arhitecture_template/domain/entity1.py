@@ -23,3 +23,9 @@ class Entity1:
     def attribute3(self, new_value):
         self.__attribute3 = new_value
 
+    def __str__(self):
+        result = "attribute1: " + str(self.__attribute1) + ','
+        result = result + " attribute2: " + str(self.__attribute2) + ','
+        result = result + " attribute3: " + str(self.__attribute3)
+        return result
+

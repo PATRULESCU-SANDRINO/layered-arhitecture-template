@@ -16,6 +16,10 @@ class TestEntity1(unittest.TestCase):
         item.attribute3 = -100
         self.assertEqual(item.attribute3, -100)
 
+    def test_str(self):
+        item = Entity1(1, "abc", 20)
+        self.assertEqual("attribute1: 1, attribute2: abc, attribute3: 20", item.__str__())
+
 
 class TestEntity2(unittest.TestCase):
     def test_entity2_getters(self):
@@ -37,3 +41,7 @@ class TestEntity2(unittest.TestCase):
         self.assertNotEqual(item.attribute1, 5)
         self.assertEqual(item.attribute2, "m")
         self.assertEqual(item.attribute3, 2)
+
+    def test_str(self):
+        item = Entity2(1, "abc", 20)
+        self.assertEqual("attribute1: 1, attribute2: abc, attribute3: 20", item.__str__())
